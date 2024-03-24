@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #c61a09;
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 50px;
+            color: #000; /* Set text color to black */
+        }
+        @font-face {
+            font-family: 'Oswald';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
+        }
+        .donations button {
+            background-color: #E9ABAB;
+            height: 600px; /* Increase the height */
+            width: 150px; /* Increase the width */
+            border-radius: 10px;
+            margin: 0 10px; /* Add margin around the buttons */
+        }
+
+        .blood-group-slot {
+            border: 1px solid #333;
+            padding: 20px; /* Increased padding for larger box size */
+            margin: 10px;
+            display: inline-block;
+            width: 180px; /* Set a specific width for uniform box size */
+            box-sizing: border-box; /* Include padding in the width calculation */
+            background-color: #E9ABAB;
+            border-radius: 15px;
+
+        }
+
+        .blood-group-row {
+            margin-bottom: 20px;
+        }
+        .portal-image {
+            max-width: 100%; /* Ensure the image doesn't exceed its container width */
+            height: auto; /* Maintain the aspect ratio of the image */
+            margin-bottom: 0px; /* Add some space below the image */
+        }
+        div.scroll-container {
+            overflow: auto;
+            white-space: nowrap;
+            padding: 10px;
+            margin-left: 100px;
+        }
+
+        div.scroll-container img {
+            padding: 10px;
+            height: 300px;
+            width:auto;
+            border: 1px solid #333;
+            border-radius: 15px;
+            margin-right:20px
+        }
+    </style>
+</head>
+<body>
+<div style="align-items: center;justify-content: center;height:100vh">
+    <div class="header" style="height:100px ;width:100%; background-color: #E9ABAB;justify-content: space-between;display: flex;flex:1;flex-direction: row; align-items: center">
+        <div class="header-logo" style="height:100px; width:150px; background-color: darksalmon;justify-content:center;align-items:center;display:flex;flex-direction: row; margin:5px">
+            <img src="https://static.vecteezy.com/system/resources/previews/016/547/827/non_2x/blood-donation-logo-design-blood-donation-illustration-with-blood-drop-line-concept-vector.jpg" alt="this is our logo" style="height: 100px;width: 150px;margin-right:4px"/>
+        </div>
+        <h2 style="font-size: 50px">VITALANT</h2>
+        <div style="height:100px;width:250px;align-items: center;justify-content: space-evenly;flex-direction: row">
+
+            <a   style="color:black; text-decoration:none" href="./register">
+                <button id="register" style="height:50px;width:100px;border-radius: 10px;background-color: cornsilk;margin-top:25px">
+                    Register here
+                </button>
+            </a>
+            <a  style="color:black; text-decoration:none" href=>
+                <button id="login" style="height:50px;width:100px;border-radius: 10px;background-color: cornsilk;margin-top:25px">
+                    Contact Us
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="donations" style="height:80px;align-items: center;justify-content: space-evenly;display:flex;flex: 1;flex-direction: row">
+        <div style="text-align: left; margin: 10px; padding: 0; position: absolute; top: 150px; left: 20px;">
+            <p style="font-weight: bold; font-size: 20px; color: red;">Donate Blood & Save Life!</p>
+            <p style="font-size: 28px; color: black;">Donate Blood and Inspire Others!</p>
+        </div>
+        <button style="background-color: red; color: white;height:80px;width:200px;border-radius: 10px;margin-top: 100px;margin-left:1000px;font-weight: bold; white-space: nowrap" onclick="makeRequests()" class="needBlood">NEED BLOOD</button>
+        <button style="background-color: red; color: white;height:80px;width:200px;border-radius: 10px;margin-top: 100px;font-weight: bold; white-space: nowrap" onclick="Donate()" class="Donate">WILLING TO DONATE?</button>
+    </div>
+
+    <div class = "gallery" style="height:69%;align-items: center;justify-content: center;display:flex">
+
+        <div class="scroll-container">
+
+            <img src="https://www.healthcareradius.in/cloud/2021/11/15/Medica-pic.jpg" alt="Forest">
+            <img src="https://sbfindia.org/wp-content/uploads/2023/09/368390069_697865409034912_4673416807676425808_n.jpg" alt="Mountains">
+            <img src="https://garhwalpost.in/wp-content/uploads/2019/03/blood.jpg" alt="Mountains">
+        </div>
+    </div>
+    <div class="bottom-tabs" style="justify-content: center;align-items: center;display: flex;flex-direction: row;flex: 1">
+        <div style="align-items: center;justify-content: space-evenly;background-color: #E9ABAB;height: 100px;width:80vw;display: flex;flex-direction: row;margin-top: -30px">
+            <div>
+                <h3>Total blood donations <span id="DonationsLength"></span></h3>
+            </div>
+            <button id="showHiddenPart" style="background-color: #E9ABAB;height:40px;width:80px;border-radius: 10px" >View More</button>
+            <div>
+                <h3>Requests made today <span id="requestsLength"></span></h3>
+            </div>
+        </div>
+    </div>
+    <div id="hiddenPart" style="margin-top: 50px;">
+        <h1>Quantity of Blood Avalilable </h1>
+        <img style="margin-top: 50px;height: 300px" class="portal-image" src="https://media.istockphoto.com/id/1315395944/photo/experienced-phlebotomist-preparing-a-woman-for-blood-draw.jpg?s=612x612&w=0&k=20&c=MX1sfSztBJIiCW0wOqxDWxLuXWOxrlTvOO6azfF2buY=" alt="">
+
+
+        <div class="blood-group-row">
+            <div class="blood-group-slot" >A+<br><h4 id="A+">5</h4></div>
+            <div class="blood-group-slot" >B+<br><h4 id="B+">7</h4></div>
+            <div class="blood-group-slot" >O+<br><h4 id="O+">2</h4></div>
+            <div class="blood-group-slot" >AB+<br><h4 id="AB+">1</h4></div>
+        </div>
+
+        <div class="blood-group-row">
+            <div class="blood-group-slot" >A-<br><h4 id="A-">4</h4></div>
+            <div class="blood-group-slot" >B-<br><h4 id="B-">7</h4></div>
+            <div class="blood-group-slot" >O-<br><h4 id="O-">0</h4></div>
+            <div class="blood-group-slot" >AB-<br><h4 id="AB-">5</h4></div>
+        </div>
+    </div>
+    <div style="height:100px;justify-content: space-evenly;align-items: center;display: flex">
+        <button style="background-color: #E9ABAB;height:40px;width:120px;border-radius: 10px">About Us</button>
+        <button style="background-color: #E9ABAB;height:40px;width:120px;border-radius: 10px">Contact Us</button>
+    </div>
+    <div id="blood-group-list">
+
+    </div>
+    <footer style="align-items: center;justify-content: center;display: flex;height:80px">
+        copyrights @Vitalant 2024
+    </footer>
+</div>
+<script>
+    document.getElementById('showHiddenPart').addEventListener('click', function() {
+        var hiddenPart = document.getElementById('hiddenPart');
+        hiddenPart.style.display = 'block'; // Show the hidden part
+        hiddenPart.scrollIntoView({ behavior: 'smooth' }); // Scroll to the hidden part
+    });
+    function isLoggedIn(){
+        const sessionToken = localStorage.getItem('sessionToken');
+        const name = localStorage.getItem('Username');
+        const updateLoginButton = document.getElementById('login')
+        const updateRegisterButton = document.getElementById('register')
+        updateLoginButton.innerText = "Contact Us";
+        updateRegisterButton.innerText = 'Register';
+    }
+    isLoggedIn();
+    function makeRequests(){
+        window.location.href = '/RequestBlood'
+
+    }
+
+    async function Donate(){
+        window.location.href = "/DonateBlood"
+    }
+
+    async function totalBloodUnits(){
+        try {
+            const response = await fetch('/totalBloodUnits', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            if (response!=null) {
+                const data = await response;
+                console.log(data);
+            } else {
+                // Login failed
+                console.log(response);
+                const errorMessage = await response.text();
+                alert("there was error in loggin in \n 1.check username and password\n 2.check internet connectivity");
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+    totalBloodUnits()
+    fetch('/bloodRequests/numberOfRequests')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            document.getElementById('requestsLength').innerText = data;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    fetch('/bloodRequests/numberOfDonations')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            document.getElementById('DonationsLength').innerText = data;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+</script>
+</body>
+</html>
+
